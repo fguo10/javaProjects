@@ -15,9 +15,9 @@ public class UniversityController {
 
 
     private UniversityService universityService;
-    @RequestMapping(value = "/search", params = "countryName")
-    public ResponseEntity<?> searchUserByCountryName(@RequestParam String countryName) {
-        return ResponseEntity.ok(universityService.searchUserByCountryName(countryName));
+    @RequestMapping(value = "/search", params = "country")
+    public ResponseEntity<?> searchUserByCountryName(@RequestParam String country) {
+        return ResponseEntity.ok(universityService.searchUserByCountryName(country));
     }
 
     @RequestMapping(value = "/search", params = "name")
