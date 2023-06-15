@@ -56,6 +56,8 @@ public class StudentServiceImpl implements StudentService {
 
         Student student = existStudent.get();
         student.setName(updatedStudentDto.getName());
+        student.setEmail(updatedStudentDto.getEmail());
+        student.setBirth(updatedStudentDto.getBirth());
         Student updatedStudent = studentRepository.save(student);
         return StudentMapper.toDto(updatedStudent);
     }

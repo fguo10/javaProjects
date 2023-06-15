@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,12 @@ public class Student {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "birth")
+    private Date birth;
 
     @OneToMany(mappedBy = "stu", fetch = FetchType.LAZY , cascade = CascadeType.ALL, orphanRemoval = false)
     private List<TeacherStudent> teacherStudentList = new ArrayList<>();
