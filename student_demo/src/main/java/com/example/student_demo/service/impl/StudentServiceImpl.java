@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -24,6 +25,22 @@ public class StudentServiceImpl implements StudentService {
         Student savedStudent = studentRepository.save(StudentMapper.toEntity(studentDto));
         return StudentMapper.toDto(savedStudent);
     }
+
+    @Override
+    public List<StudentDto> getAllStudents() {
+        log.info("get all students...");
+        List<Student> students = studentRepository.findAll();
+        return students.stream().map(StudentMapper::toDto).collect(Collectors.toList());
+    }
+
+
+    @Override
+    public Optional<StudentDto> getStudentById(Long id) {
+        log.info("get student by Id, id = " + id);
+        Optional<Student> student = studentRepository.findById(id);
+        return student.map(StudentMapper::toDto);
+    }
+
 //
 //    @Override
 //    public StudentDto updateStudent(Long id, StudentDto updatedStudentDto) throws Exception {
@@ -39,19 +56,8 @@ public class StudentServiceImpl implements StudentService {
 //        }
 //    }
 //
-//    @Override
-//    public List<StudentDto> getAllStudents() {
-//        log.info("get all students...");
-//        studentRepository.findAll().forEach(student -> StudentMapper.toDto(student));
-//
-//        return ;
-//    }
-//
-//    @Override
-//    public Optional<StudentDto> getStudentById(Long id) {
-//        log.info("get student by Id, id = " + id);
-//        return studentRepository.findById(id);
-//    }
+
+
 //
 //    @Override
 //    public void deleteStudent(Long id) throws Exception {

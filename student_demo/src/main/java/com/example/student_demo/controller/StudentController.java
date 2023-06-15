@@ -19,22 +19,23 @@ import java.util.Optional;
 public class StudentController {
     private StudentService studentService;
 
-//    @GetMapping
-//    public ResponseEntity<List<Student>> getAllStudents() {
-//        return ResponseEntity.ok(studentService.getAllStudents());
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Student> getStudentById(@PathVariable("id") Long id) {
-//        Optional<Student> student = studentService.getStudentById(id);
-//        return student.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-//    }
-//
     @PostMapping
     public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto) {
         StudentDto savedStudentDto = studentService.createStudent(studentDto);
         return new ResponseEntity<>(savedStudentDto, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<List<StudentDto>> getAllStudents() {
+        return ResponseEntity.ok(studentService.getAllStudents());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getStudentById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(studentService.getStudentById(id));
+    }
+
+
 //
 //    @PutMapping("/{id}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("id") Long id, @RequestBody Student updatedStudent) throws Exception {

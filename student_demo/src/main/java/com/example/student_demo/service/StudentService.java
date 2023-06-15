@@ -9,11 +9,13 @@ import java.util.Optional;
 public interface StudentService {
     StudentDto createStudent(StudentDto studentDto);
 
+    List<StudentDto> getAllStudents();
+
+    Optional<StudentDto> getStudentById(Long id);
+
 //    StudentDto updateStudent(Long id, StudentDto updatedStudentDto) throws Exception;
-//
-//    List<StudentDto> getAllStudents();
-//
-//    Optional<StudentDto> getStudentById(Long id);
+
+
 //
 //
 //    void deleteStudent(Long id) throws Exception;
