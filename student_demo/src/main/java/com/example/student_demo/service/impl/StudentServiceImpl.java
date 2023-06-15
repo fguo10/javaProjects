@@ -2,6 +2,7 @@ package com.example.student_demo.service.impl;
 
 import com.example.student_demo.dto.StudentDto;
 import com.example.student_demo.entity.Student;
+import com.example.student_demo.exception.StudentException;
 import com.example.student_demo.mapper.StudentMapper;
 import com.example.student_demo.repository.StudentRepository;
 import com.example.student_demo.service.StudentService;
@@ -35,9 +36,12 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public Optional<StudentDto> getStudentById(Long id) {
+    public Optional<StudentDto> getStudentById(Long id) throws StudentException {
         log.info("get student by Id, id = " + id);
         Optional<Student> student = studentRepository.findById(id);
+        if (student.isEmpty()){
+            throw new StudentException("student not exist, id=" + id);
+        }
         return student.map(StudentMapper::toDto);
     }
 

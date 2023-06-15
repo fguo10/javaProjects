@@ -2,6 +2,7 @@ package com.example.student_demo.controller;
 
 import com.example.student_demo.dto.StudentDto;
 import com.example.student_demo.entity.Student;
+import com.example.student_demo.exception.StudentException;
 import com.example.student_demo.service.StudentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +32,12 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getStudentById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(studentService.getStudentById(id));
+    public ResponseEntity<?> getStudentById(@PathVariable("id") Long id) throws StudentException {
+        Optional<StudentDto> studentDto = studentService.getStudentById(id);
+        return ResponseEntity.ok(studentDto);
     }
 
 
-//
 //    @PutMapping("/{id}")
 //    public ResponseEntity<Student> updateStudent(@PathVariable("id") Long id, @RequestBody Student updatedStudent) throws Exception {
 //        return ResponseEntity.ok(studentService.updateStudent(id, updatedStudent));
