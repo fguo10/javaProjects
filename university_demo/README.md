@@ -7,7 +7,7 @@
 4. create configuration class=> get resttemplate as bean
    return new RestTemplate();
 5. autowired rest template bean in service
-6. restTemplate.getObject(url, UserInfo.class)
+6. restTemplate.getObject(url, University.class)
    {
    “name”:”Tom”,
    “address”: {
@@ -16,7 +16,7 @@
    }
    }
    @Data
-   class UserInfo {
+   class University {
    @JsonProperty(“name”)
    private String user_name;
    private Address address;
