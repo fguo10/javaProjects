@@ -38,15 +38,15 @@ public class StudentController {
     }
 
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Student> updateStudent(@PathVariable("id") Long id, @RequestBody Student updatedStudent) throws Exception {
-//        return ResponseEntity.ok(studentService.updateStudent(id, updatedStudent));
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<String> deleteStudent(@PathVariable("id") Long id) throws Exception {
-//        studentService.deleteStudent(id);
-//        return ResponseEntity.ok("delete student success");
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<StudentDto> updateStudent(@PathVariable("id") Long id, @RequestBody StudentDto updatedStudentDto) throws Exception {
+        return ResponseEntity.ok(studentService.updateStudent(id, updatedStudentDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable("id") Long id) throws Exception {
+        studentService.deleteStudent(id);
+        return ResponseEntity.ok("delete student success");
+    }
 
 }

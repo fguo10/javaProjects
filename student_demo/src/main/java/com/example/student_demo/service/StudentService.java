@@ -14,10 +14,7 @@ public interface StudentService {
 
     Optional<StudentDto> getStudentById(Long id) throws StudentException;
 
-//    StudentDto updateStudent(Long id, StudentDto updatedStudentDto) throws Exception;
+    StudentDto updateStudent(Long id, StudentDto updatedStudentDto) throws StudentException;
 
-
-//
-//
-//    void deleteStudent(Long id) throws Exception;
+    void deleteStudent(Long id) throws StudentException;
 }

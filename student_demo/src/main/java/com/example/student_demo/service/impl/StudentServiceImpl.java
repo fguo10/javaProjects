@@ -39,40 +39,34 @@ public class StudentServiceImpl implements StudentService {
     public Optional<StudentDto> getStudentById(Long id) throws StudentException {
         log.info("get student by Id, id = " + id);
         Optional<Student> student = studentRepository.findById(id);
-        if (student.isEmpty()){
+        if (student.isEmpty()) {
             throw new StudentException("student not exist, id=" + id);
         }
         return student.map(StudentMapper::toDto);
     }
 
-//
-//    @Override
-//    public StudentDto updateStudent(Long id, StudentDto updatedStudentDto) throws Exception {
-//        log.info("update student: " + id + " " + updatedStudentDto.toString());
-//        Optional<Student> student = studentRepository.findById(id);
-//        Student updatedStudent = StudentMapper.toEntity(updatedStudentDto);
-//        if (student.isPresent()) {
-//            updatedStudent.setId(id);
-//            return StudentMapper.toDto(studentRepository.save(updatedStudent));
-//        } else {
-//            log.error("can not find this  student, id = " + id);
-//            throw new Exception("can not find this  student");
-//        }
-//    }
-//
 
+    @Override
+    public StudentDto updateStudent(Long id, StudentDto updatedStudentDto) throws StudentException {
+        log.info("Update student: " + id + " " + updatedStudentDto.toString());
+        Optional<Student> existStudent = studentRepository.findById(id);
+        if (existStudent.isEmpty()) {
+            throw new StudentException("student not exist, id=" + id);
+        }
 
-//
-//    @Override
-//    public void deleteStudent(Long id) throws Exception {
-//        log.info("delete student: " + id);
-//        Optional<Student> student = studentRepository.findById(id);
-//        if (student.isPresent()) {
-//            studentRepository.delete(student.get());
-//            log.debug("delete student success, id = " + id);
-//        } else {
-//            log.error("can not find this  student, id = " + id);
-//            throw new Exception("can not find this  student");
-//        }
-//    }
+        Student student = existStudent.get();
+        student.setName(updatedStudentDto.getName());
+        Student updatedStudent = studentRepository.save(student);
+        return StudentMapper.toDto(updatedStudent);
+    }
+
+    @Override
+    public void deleteStudent(Long id) throws StudentException {
+        log.info("delete student: " + id);
+        Optional<Student> existStudent = studentRepository.findById(id);
+        if (existStudent.isEmpty()) {
+            throw new StudentException("student not exist, id=" + id);
+        }
+        studentRepository.delete(existStudent.get());
+    }
 }
