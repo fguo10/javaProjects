@@ -1,7 +1,6 @@
 package com.example.student_demo.controller;
 
 import com.example.student_demo.dto.StudentDto;
-import com.example.student_demo.entity.Student;
 import com.example.student_demo.exception.StudentException;
 import com.example.student_demo.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(
-        name = "CRUD REST APIs for Student Resource",
-        description = "CRUD REST APIs - Create Student, Update Student, Get Student, Get All Students, Delete Student"
-)
+@Tag(name = "CRUD REST APIs for Student Resource", description = "CRUD REST APIs - Create Student, Update Student, Get Student, Get All Students, Delete Student")
 @Slf4j
 @AllArgsConstructor
 @RestController
@@ -28,14 +24,8 @@ public class StudentController {
     private StudentService studentService;
 
 
-    @Operation(
-            summary = "Create Student REST API",
-            description = "Create Student REST API is used to save student in a database"
-    )
-    @ApiResponse(
-            responseCode = "201",
-            description = "HTTP Status 201 CREATED"
-    )
+    @Operation(summary = "Create Student REST API", description = "Create Student REST API is used to save student in a database")
+    @ApiResponse(responseCode = "201", description = "HTTP Status 201 CREATED")
     @PostMapping
     public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto) {
         StudentDto savedStudentDto = studentService.createStudent(studentDto);
@@ -43,28 +33,16 @@ public class StudentController {
     }
 
 
-    @Operation(
-            summary = "Get all Students REST API",
-            description = "Get all Students REST API is used to get all Students from the database"
-    )
-    @ApiResponse(
-            responseCode = "200",
-            description = "HTTP Status 200 SUCCESS"
-    )
+    @Operation(summary = "Get all Students REST API", description = "Get all Students REST API is used to get all Students from the database")
+    @ApiResponse(responseCode = "200", description = "HTTP Status 200 SUCCESS")
     @GetMapping
     public ResponseEntity<List<StudentDto>> getAllStudents() {
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
 
-    @Operation(
-            summary = "Get Student By ID REST API",
-            description = "Get Student By ID REST API is used to get a single Student from the database"
-    )
-    @ApiResponse(
-            responseCode = "200",
-            description = "HTTP Status 200 SUCCESS"
-    )
+    @Operation(summary = "Get Student By ID REST API", description = "Get Student By ID REST API is used to get a single Student from the database")
+    @ApiResponse(responseCode = "200", description = "HTTP Status 200 SUCCESS")
     @GetMapping("/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable("id") Long id) throws StudentException {
         Optional<StudentDto> studentDto = studentService.getStudentById(id);
@@ -72,31 +50,16 @@ public class StudentController {
     }
 
 
-
-
-    @Operation(
-            summary = "Update Student REST API",
-            description = "Update Student REST API is used to update a particular Student in the database"
-    )
-    @ApiResponse(
-            responseCode = "200",
-            description = "HTTP Status 200 SUCCESS"
-    )
+    @Operation(summary = "Update Student REST API", description = "Update Student REST API is used to update a particular Student in the database")
+    @ApiResponse(responseCode = "200", description = "HTTP Status 200 SUCCESS")
     @PutMapping("/{id}")
     public ResponseEntity<StudentDto> updateStudent(@PathVariable("id") Long id, @RequestBody StudentDto updatedStudentDto) throws Exception {
         return ResponseEntity.ok(studentService.updateStudent(id, updatedStudentDto));
     }
 
 
-
-    @Operation(
-            summary = "Delete Student REST API",
-            description = "Delete Student REST API is used to delete a particular Student from the database"
-    )
-    @ApiResponse(
-            responseCode = "200",
-            description = "HTTP Status 200 SUCCESS"
-    )
+    @Operation(summary = "Delete Student REST API", description = "Delete Student REST API is used to delete a particular Student from the database")
+    @ApiResponse(responseCode = "200", description = "HTTP Status 200 SUCCESS")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable("id") Long id) throws Exception {
         studentService.deleteStudent(id);
