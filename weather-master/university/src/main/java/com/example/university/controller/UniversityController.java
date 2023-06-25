@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("university")
-@AllArgsConstructor
 public class UniversityController {
 
-
-    private UniversityService universityService;
+    private final UniversityService universityService;
 
     public UniversityController(UniversityService universityService) {
         this.universityService = universityService;

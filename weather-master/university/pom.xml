@@ -10,7 +10,7 @@
     <groupId>com.example</groupId>
     <artifactId>university</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>search</name>
+    <name>university</name>
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
