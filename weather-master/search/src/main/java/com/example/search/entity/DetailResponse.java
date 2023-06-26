@@ -1,6 +1,13 @@
 package com.example.search.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+
+@Data
 public class DetailResponse {
-    Student student;
-    University university;
+    @JsonProperty("students")
+    Student[] students;
+    @JsonProperty("universities")
+    University[] universities;
 }
