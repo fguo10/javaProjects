@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Slf4j
 @Service
@@ -30,7 +31,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentDto> getAllStudents() {
+    public List<StudentDto> getAllStudents(){
         log.info("get all students...");
         List<Student> students = studentRepository.findAll();
         return students.stream().map(StudentMapper::toDto).collect(Collectors.toList());

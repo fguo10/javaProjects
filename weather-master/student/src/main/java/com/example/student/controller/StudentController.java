@@ -36,7 +36,7 @@ public class StudentController {
     @Operation(summary = "Get all Students REST API", description = "Get all Students REST API is used to get all Students from the database")
     @ApiResponse(responseCode = "200", description = "HTTP Status 200 SUCCESS")
     @GetMapping
-    public ResponseEntity<List<StudentDto>> getAllStudents() {
+    public ResponseEntity<List<StudentDto>> getAllStudents(){
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
